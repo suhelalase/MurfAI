@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 10 - Conversational Agent with History</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        /* Background similar to Murf AI */
+        body {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            color: #e5e7eb;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Card styling */
+        .card {
+            background: rgba(31, 41, 55, 0.85);
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            color: #e5e7eb;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: #4f46e5;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #4338ca;
+        }
+        .btn-outline-primary {
+            color: #4f46e5;
+            border-color: #4f46e5;
+        }
+        .btn-outline-primary:hover {
+            background-color: #4f46e5;
+            color: white;
+        }
+        .btn-outline-danger {
+            color: #ef4444;
+            border-color: #ef4444;
+        }
+        .btn-outline-danger:hover {
+            background-color: #ef4444;
+            color: white;
+        }
+
+        /* Scrollbar styling for call history */
+        #callHistory {
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        #callHistory::-webkit-scrollbar {
+            width: 8px;
+        }
+        #callHistory::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        #callHistory::-webkit-scrollbar-thumb {
+            background-color: #4f46e5;
+            border-radius: 4px;
+        }
+        #callHistory::-webkit-scrollbar-thumb:hover {
+            background-color: #4338ca;
+        }
+
+        /* Call history items */
+        .call-history-item {
+            background: rgba(79, 70, 229, 0.1);
+            border-left: 4px solid #4f46e5;
+            padding: 10px 15px;
+            margin-bottom: 12px;
+            border-radius: 0.5rem;
+            word-wrap: break-word;
+        }
+        .call-history-item .timestamp {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            margin-bottom: 4px;
+        }
+        .call-history-item .user-label {
+            font-weight: 600;
+            color: #6366f1;
+        }
+        .call-history-item .agent-label {
+            font-weight: 600;
+            color: #22c55e;
+        }
+        .call-history-item .message {
+            margin-bottom: 6px;
+        }
+
+        /* Input and select styling */
+        input.form-control, select.form-select {
+            background-color: #374151;
+            border: none;
+            color: #e5e7eb;
+        }
+        input.form-control::placeholder {
+            color: #9ca3af;
+        }
+        input.form-control:focus, select.form-select:focus {
+            background-color: #4f46e5;
+            color: white;
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.5);
+        }
+
+        /* Audio player styling */
+        audio {
+            width: 100%;
+            outline: none;
+            border-radius: 0.5rem;
+            background-color: #374151;
+        }
+
+        /* Status display */
+        #statusDisplay {
+            font-weight: 500;
+            font-size: 1rem;
+            color: #a5b4fc;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 576px) {
+            .card {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card shadow p-4" style="max-width: 450px; width: 100%;">
+            
+            <h4 class="mb-3 text-center">📝 Text-to-Speech</h4>
+            <div class="mb-3">
+                <select id="voiceSelector" class="form-select" aria-label="Select Voice">
+                    <option>Loading voices...</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <input type="text" id="textInput" class="form-control" placeholder="Enter your message" />
+            </div>
+            <div class="mb-3">
+                <button id="generateBtn" class="btn btn-primary w-100">Generate Voice</button>
+            </div>
+            
+            <hr class="my-4" />
+
+            <h4 class="mb-3 text-center">🤖 Conversational Agent</h4>
+            <p class="mb-4 text-muted text-center" style="color: #a5b4fc;">
+                Press Start, ask a question, and we can have a conversation. I'll remember what we talked about.
+            </p>
+
+            <div class="mb-3">
+                <button id="startBtn" class="btn btn-outline-primary w-100">Start Conversation</button>
+            </div>
+            <div class="mb-3">
+                <button id="stopBtn" class="btn btn-outline-danger w-100" disabled>Stop Recording</button>
+            </div>
+
+            <div class="mb-3">
+                <audio id="audioPlayer" class="w-100" controls hidden></audio>
+            </div>
+            
+            <div id="statusDisplay" class="text-info mb-4 text-center">Ready to chat!</div>
+
+            <!-- New Call History Section -->
+            <hr class="my-4" />
+            <h5 class="mb-3 text-center" style="color: #a5b4fc;">📞 Call History</h5>
+            <div id="callHistory" class="mb-3" style="max-height: 300px; overflow-y: auto;">
+                <div class="text-muted text-center" style="color: #6b7280;">No conversation history yet</div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/script.js"></script>
+</body>
+</html>
