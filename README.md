@@ -33,7 +33,7 @@ The goal is to create 30 mini voice agent projects in 30 days. Each day focuses 
 - uvicorn main:app --reload
 - http://127.0.0.1:8000.
 
-🧠 Environment Variables <br>
+**🧠 Environment Variables  **<br>
 MURF_API_KEY — Your Murf API key (get from https://murf.ai) <br>
 ASSEMBLYAI_API_KEY — Your AssemblyAI API key (get from https://www.assemblyai.com)<br>
 GEMINI_API_KEY or GOOGLE_API_KEY — Your Google Gemini API key (get from https://aistudio.google.com/app/apikey) <br>
@@ -54,6 +54,8 @@ GEMINI_API_KEY or GOOGLE_API_KEY — Your Google Gemini API key (get from https:
 - Day 11: Made the application more robust by adding server-side and client-side error handling, including a friendly fallback audio message for API failures.<br>
 - Day 12: Performed a major UI revamp, simplifying the interface to a single, animated record button and a cleaner, more modern aesthetic.<br>
 - Day 13: Focused on documentation, creating this comprehensive README.md file to explain the project's architecture, features, and setup.<br>
-- Day 14: Refactor the code to make it more readable and maintainable and Clean up the code by removing unused imports, variables, and functions and Upload the code to Github.<br>
+- Day 14: Refactor the code to make it more readable and maintainable and Clean up the code by removing unused imports, variables, and functions and Upload the       code to Github.<br>
+- Day 15: Added a foundational WebSocket endpoint to the server.<br>
+- Day 16: Implemented real-time audio streaming from the client using WebSockets.<br>
 
 **Stay tuned for more!**
