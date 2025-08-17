@@ -1,46 +1,51 @@
-🎯 **Day 04 – TTS + Echo Bot with Murf AI**
+# Day 04: Building a Client-Side Echo Bot
 
-Welcome to Day 4 of the **30 Days of Voice Agents Challenge**!
-Today’s focus was on adding an **Echo Bot** feature that lets users record and play back their voice in the browser — alongside the existing text-to-speech functionality.
+Welcome to Day 4 of the 30 Days of Voice Agents Challenge\! Today's task is to add a client-side "Echo Bot" to our web page. This feature uses the browser's built-in capabilities to record audio from a microphone and play it back, all without involving the server.
 
-🧠 **What We Built**
+## 🧠 What We Built
 
-A voice app that:
-- Accepts text input from the user
-- Dynamically fetches available voice options from the Murf API
-- Lets the user select a voice before generating speech
-- Sends both the text and selected voice to the Murf API
-- Plays the resulting audio in the browser
-- Allows users to record their own voice using the mic
-- Plays back the recorded audio as an echo
+  - **A new "Echo Bot" UI section** added to our existing HTML page.
+  - **Microphone Recording**: Implemented audio recording directly in the browser using the `MediaRecorder` API.
+  - **Recording Controls**: Added "Start Recording" and "Stop Recording" buttons to control the recording process.
+  - **Instant Playback**: The recorded audio is immediately playable on the page using an HTML `<audio>` element.
 
-🛠 **Tech Stack**
+## 🛠 Tech Stack
 
-- **Backend**: `FastAPI`, `python-dotenv`, `requests`  
-- **Frontend**: `HTML`, `Bootstrap`, `JavaScript` (MediaRecorder API)
-- **Voice API**: Murf AI – `/voices` and `/speech/generate` endpoints
+  - **Backend**: `FastAPI`, `uvicorn` (No changes from Day 3)
+  - **Frontend**: `HTML`, `Bootstrap`, `JavaScript`, **`MediaRecorder` API**
 
-🔐 **Environment Variables**
+## 🚀 Run the App
 
-Create a `.env` file in the root of `day-03/`: <br>
-MURF_API_KEY=your_actual_murf_api_key
+1.  **Navigate to the project directory:**
+    ```bash
+    cd day-04/
+    ```
+2.  **Install the required dependencies** (if you haven't already):
+    ```bash
+    pip install -r requirements.txt
+    ```
+3.  **Run the FastAPI server:**
+    ```bash
+    uvicorn main:app --reload
+    ```
+4.  **Open your browser** and visit [http://localhost:8000](https://www.google.com/search?q=http://localhost:8000). You will likely need to grant the page permission to access your microphone.
 
-Make sure to use a valid voice ID in the request payload (e.g., `en-US-natalie`).
+## 📂 Project Structure
 
-▶️ **Run the App**
+```
+day-04/
+├── main.py           # Unchanged from Day 3
+├── templates/
+│   └── index.html    # Updated with the new Echo Bot section
+├── static/
+│   └── script.js     # Updated with MediaRecorder logic
+├── requirements.txt  # Unchanged
+└── .env              # Unchanged
+```
 
-cd day-03/ <br>
-pip install -r requirements.txt <br>
-uvicorn main:app --reload
+## ✅ Completed Days
 
-Visit http://localhost:8000 in your browser.
-
-🧪 **Test Input**
-
-Try typing something like: <br>
-"This is Day 4 of the Voice Agent Challenge." <br>
-Select a voice from the dropdown, then click Generate Voice.
-
-To test the echo feature, click Start Recording, speak into your mic, and then click Stop Recording to hear it played back.
-
-If fetching voices from the API fails, a fallback list of voices is used automatically.
+  - **Day 01**: Set up a basic FastAPI server with a Bootstrap UI.
+  - **Day 02**: Created a `/tts` endpoint to generate speech from text using Murf AI.
+  - **Day 03**: Built a client-side interface to interact with the `/tts` endpoint.
+  - **Day 04**: Added a client-side echo bot using the `MediaRecorder` API.
