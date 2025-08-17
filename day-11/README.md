@@ -1,14 +1,13 @@
-# Day 12: Revamping the User Interface
+# Day 11: Robust Error Handling and Fallbacks
 
-Welcome to Day 12 of the 30 Days of Voice Agents Challenge\! Today, we've given our conversational agent a fresh, modern, and more intuitive user interface. The focus has been on streamlining the user experience and making the interaction feel more natural and engaging.
+Welcome to Day 11 of the 30 Days of Voice Agents Challenge\! Today, we're making our conversational agent more resilient. Real-world applications need to handle unexpected issues gracefully, so we've added robust error handling on both the server and the client to manage API failures and other problems.
 
 ## 🧠 What We Built
 
-  - **Simplified UI**: Removed the initial text-to-speech and echo bot sections to focus solely on the conversational agent. The interface is now cleaner and more centered on the primary task.
-  - **Combined Record Button**: The "Start Recording" and "Stop Recording" buttons have been merged into a single, intelligent button that changes its appearance and functionality based on the application's state.
-  - **Engaging Animations**: The record button now features a pulsing animation while recording, providing clear visual feedback to the user.
-  - **Hidden Audio Player**: The audio player is now hidden by default and only appears when the agent is speaking, reducing visual clutter.
-  - **Improved Styling**: The overall design has been revamped with a more modern aesthetic, including a card-based layout, shadows, and a more prominent record button.
+  - **Server-Side Error Handling**: The `/agent/chat/{session_id}` endpoint in our FastAPI server is now wrapped in a comprehensive `try-except` block. This allows it to catch any exceptions that occur during the STT, LLM, or TTS API calls.
+  - **Fallback Audio Response**: If any of the external APIs fail, the server now sends a pre-recorded fallback audio message ("I'm having trouble connecting right now") instead of a JSON error. This provides a more user-friendly experience.
+  - **Client-Side Error Detection**: The client-side JavaScript has been updated to check for a special `X-Error` header in the server's response. This header indicates that the fallback audio is being sent, allowing the client to handle it appropriately.
+  - **Graceful Failure**: When an error is detected, the client plays the fallback audio and re-enables the recording button, allowing the user to try their request again without needing to refresh the page.
 
 ## 🛠 Tech Stack
 
@@ -23,13 +22,13 @@ Welcome to Day 12 of the 30 Days of Voice Agents Challenge\! Today, we've given 
 
 1.  **Navigate to the project directory:**
     ```bash
-    cd day-12/
+    cd day-11/
     ```
 2.  **Install the required dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
-3.  **Create a `.env` file** in the `day-12/` directory and add your API keys:
+3.  **Create a `.env` file** in the `day-11/` directory and add your API keys:
     ```
     MURF_API_KEY="your_murf_api_key_here"
     ASSEMBLYAI_API_KEY="your_assemblyai_api_key_here"
@@ -44,15 +43,15 @@ Welcome to Day 12 of the 30 Days of Voice Agents Challenge\! Today, we've given 
 ## 📂 Project Structure
 
 ```
-day-12/
-├── main.py           # Unchanged from Day 11
+day-11/
+├── main.py           # Updated with try-except blocks and fallback audio response
 ├── templates/
-│   └── index.html    # Updated with the new, revamped UI
+│   └── index.html    # UI for the conversational agent
 ├── static/
-│   ├── script.js     # Client-side logic for the new single-button interaction
-│   └── fallback.mp3  # Unchanged
-├── requirements.txt  # Unchanged
-└── .env              # Unchanged
+│   ├── script.js     # Client-side logic for handling errors
+│   └── fallback.mp3  # New fallback audio file
+├── requirements.txt  # Project dependencies
+└── .env              # To store your API keys
 ```
 
 ## ✅ Completed Days
@@ -68,4 +67,3 @@ day-12/
   - **Day 09**: Built a full voice-to-voice conversational agent.
   - **Day 10**: Implemented chat history for context-aware conversations.
   - **Day 11**: Added robust error handling and a fallback audio response.
-  - **Day 12**: Revamped the UI for a more streamlined and engaging user experience.
