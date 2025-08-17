@@ -33,7 +33,7 @@ The goal is to create 30 mini voice agent projects in 30 days. Each day focuses 
 - uvicorn main:app --reload
 - http://127.0.0.1:8000.
 
-**🧠 Environment Variables  **<br>
+**🧠 Environment Variables**<br>
 MURF_API_KEY — Your Murf API key (get from https://murf.ai) <br>
 ASSEMBLYAI_API_KEY — Your AssemblyAI API key (get from https://www.assemblyai.com)<br>
 GEMINI_API_KEY or GOOGLE_API_KEY — Your Google Gemini API key (get from https://aistudio.google.com/app/apikey) <br>
