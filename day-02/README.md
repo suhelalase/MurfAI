@@ -1,39 +1,67 @@
-🎯 **Day 02 – Text-to-Speech with Murf AI**
+# Day 02: Text-to-Speech with Murf AI
 
-Welcome to Day 2 of the **30 Days of Voice Agents Challenge**!  
-Today’s focus is on turning user input into speech using the **Murf AI Text-to-Speech (TTS) API** and playing it back in the browser — powered by **FastAPI**, **Bootstrap**, and plain JavaScript.
+Welcome to Day 2 of the 30 Days of Voice Agents Challenge\! Today, we're building on our FastAPI server by adding a Text-to-Speech (TTS) endpoint that integrates with the **Murf AI API**.
 
-🧠 **What We Built**
+## 🧠 What We Built
 
-A voice app that:
-- Accepts text input from the user
-- Sends it to the Murf API for TTS generation
-- Plays back the generated audio directly in the browser
+A FastAPI server with a new `/tts` endpoint that:
 
-🛠 **Tech Stack**
+  - Accepts a text string as input.
+  - Calls the Murf AI `/speech/generate` REST API to convert the text into speech.
+  - Returns a JSON response containing a URL to the generated audio file.
 
-- **Backend**: `FastAPI`, `python-dotenv`, `requests`  
-- **Frontend**: `HTML`, `Bootstrap`, `JavaScript`  
-- **Voice API**: Murf AI – `/speech/generate` endpoint
+## 🛠 Tech Stack
 
-🔐 **Environment Variables**
+  - **Backend**: `FastAPI`, `uvicorn`, `python-dotenv`, `requests`
+  - **Frontend**: `HTML`, `Bootstrap`, `JavaScript`
+  - **Voice API**: Murf AI
 
-Create a `.env` file in the root of `day-02/`: <br>
-MURF_API_KEY=your_actual_murf_api_key
+## 🚀 Run the App
 
-Make sure to use a valid voice ID in the request payload (e.g., `en-US-natalie`).
+1.  **Navigate to the project directory:**
+    ```bash
+    cd day-02/
+    ```
+2.  **Install the required dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+3.  **Create a `.env` file** in the `day-02/` directory and add your Murf API key:
+    ```
+    MURF_API_KEY="your_murf_api_key_here"
+    ```
+4.  **Run the FastAPI server:**
+    ```bash
+    uvicorn main:app --reload
+    ```
+5.  **Open your browser** and visit [http://localhost:8000/docs](https://www.google.com/search?q=http://localhost:8000/docs) to access the API documentation and test the endpoint.
 
-▶️ **Run the App**
+## 🧪 Testing the Endpoint
 
-cd day-02/ <br>
-pip install -r requirements.txt <br>
-uvicorn main:app --reload
+You can test the new `/tts` endpoint using FastAPI's interactive documentation:
 
-Visit http://localhost:8000 in your browser.
+1.  Go to [http://localhost:8000/docs](https://www.google.com/search?q=http://localhost:8000/docs).
+2.  Expand the `POST /tts` endpoint.
+3.  Click "**Try it out**".
+4.  Enter some text in the `text` field.
+5.  Click "**Execute**".
 
-🧪 **Test Input**
+You'll see the server's response, which will include the `audio_url` of the generated speech.
 
-Try typing something like: <br>
-"This is Day 2 of the Voice Agent Challenge."
+## 📂 Project Structure
 
-Click Generate Voice and listen!
+```
+day-02/
+├── main.py           # Backend logic with the new /tts endpoint
+├── templates/
+│   └── index.html    # Basic HTML file (unchanged from Day 1)
+├── static/
+│   └── script.js     # Basic JavaScript (unchanged from Day 1)
+├── requirements.txt  # Project dependencies
+└── .env              # To store your API key
+```
+
+## ✅ Completed Days
+
+  - **Day 01**: Set up a basic FastAPI server with a Bootstrap UI.
+  - **Day 02**: Created a `/tts` endpoint to generate speech from text using Murf AI.
