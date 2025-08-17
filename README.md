@@ -113,5 +113,6 @@ Here is a summary of the progress made during the first 13 days of the challenge
   * **Day 11**: Made the application more robust by adding **server-side and client-side error handling**, including a friendly fallback audio message for API failures.
   * **Day 12**: Performed a major **UI revamp**, simplifying the interface to a single, animated record button and a cleaner, more modern aesthetic.
   * **Day 13**: Focused on **documentation**, creating this comprehensive `README.md` file to explain the project's architecture, features, and setup.
+  * **Day 14**: Implement Logging for better logs and separate out the logic of 3rd party services and Clean up the code by removing unused imports, variables, and functions.
   * **Day 15**: Added a foundational WebSocket endpoint to the server.
   * **Day 16**: Implemented real-time audio streaming from the client using WebSockets.
