@@ -117,3 +117,4 @@ Here is a summary of the progress made during the first 13 days of the challenge
   * **Day 15**: Added a foundational WebSocket endpoint to the server.
   * **Day 16**: Implemented real-time audio streaming from the client using WebSockets.
   * **Day 17**: Added real-time transcription with AssemblyAI's Python SDK.
+  * **Day 18**: Implemented turn detection with AssemblyAI to identify when the user has finished speaking.
