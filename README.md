@@ -116,3 +116,4 @@ Here is a summary of the progress made during the first 13 days of the challenge
   * **Day 14**: Implement Logging for better logs and separate out the logic of 3rd party services and Clean up the code by removing unused imports, variables, and functions.
   * **Day 15**: Added a foundational WebSocket endpoint to the server.
   * **Day 16**: Implemented real-time audio streaming from the client using WebSockets.
+  * **Day 17**: Added real-time transcription with AssemblyAI's Python SDK.
