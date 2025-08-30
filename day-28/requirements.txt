@@ -1,0 +1,10 @@
+﻿fastapi
+uvicorn[standard]
+python-dotenv
+requests
+jinja2
+assemblyai
+google-generativeai
+websockets
+google-search-results
+murf
