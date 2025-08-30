@@ -24,6 +24,13 @@ The tech stack remains the same, but we are now leveraging a cloud platform to h
 
 -----
 
+## 🚀 Run the App
+
+Our voice agent is now live\! You can access and interact with it here:
+
+**[https://zero-gklu.onrender.com](https://zero-gklu.onrender.com)**
+
+Simply visit the link, click the settings icon to enter your API keys, grant microphone permissions, and start chatting\!
 
 -----
 
