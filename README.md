@@ -88,11 +88,11 @@ To get a local copy up and running, follow these simple steps.
 
 1.  **Clone the repository**
     ```sh
-    git clone https://github.com/siddbhatt18/30-days-of-voice-agents.git
+    git clone https://github.com/suhelalase/MurfAI.git
     ```
-2.  **Navigate to the latest project directory** (e.g., `day-29`).
+2.  **Navigate to the latest project directory** (e.g., `day-30`).
     ```sh
-    cd 30-days-of-voice-agents/day-29/
+    cd 30-days-of-voice-agents/day-30/
     ```
 3.  **Install the required dependencies** from the `requirements.txt` file.
     ```sh
@@ -136,7 +136,7 @@ AI Voice Agent/
 
 -----
 
-## 🗓️ Project Journey: Day 1 to 29
+## 🗓️ Project Journey: Day 1 to 30
 
 Here is a summary of the progress made during the challenge.
 
@@ -169,3 +169,4 @@ Here is a summary of the progress made during the challenge.
   * **Day 27**: Revamped the UI and implemented a **settings panel** for API key configuration directly in the browser.
   * **Day 28**: Successfully **deployed the agent** to a public cloud server, making it accessible to all.
   * **Day 29**: Updated the main `README.md` to include all the latest features, architectural changes, and a complete project journey, ensuring the documentation is comprehensive and up-to-date with the current state of the voice agent.
+  * **Day 30**: **Finalized the project**, wrapped up the 30-day challenge, and ensured all documentation provides a comprehensive overview of the entire journey.
